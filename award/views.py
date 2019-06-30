@@ -92,18 +92,18 @@ def index(request):
 #         form = ProjectForm()
 #     return render(request, 'new_project.html', {"form": form})
  
-# def edit_profile(request):
-#     date = dt.date.today()
-#     current_user = request.user
-#     profile = Profile.objects.get(user=current_user.id)
-#     posts = Project.objects.filter(user=current_user)
-#     if request.method == 'POST':
-#         signup_form = EditForm(request.POST, request.FILES,instance=request.user.profile) 
-#         if signup_form.is_valid():
-#             signup_form.save()
-#             return redirect('profile')
-#     else:
-#         signup_form =EditForm() 
+def edit_profile(request):
+    date = dt.date.today()
+    current_user = request.user
+    profile = Profile.objects.get(user=current_user.id)
+    posts = Project.objects.filter(user=current_user)
+    if request.method == 'POST':
+        signup_form = EditForm(request.POST, request.FILES,instance=request.user.profile) 
+        if signup_form.is_valid():
+            signup_form.save()
+            return redirect('profile')
+    else:
+        signup_form =EditForm() 
         
 
     
