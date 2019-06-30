@@ -23,48 +23,48 @@ from rest_framework.views import APIView
 from .serializer import ProjectSerializer,ProfileSerializer
 from rest_framework import status
 
-# def signup(request):
-#     if request.method == 'POST':
-#         form = SignupForm(request.POST)
-#         if form.is_valid():
-#             user = form.save(commit=False)
-#             user.is_active = False
-#             user.save()
-#             current_site = get_current_site(request)
-#             mail_subject = 'Activate your Awards account.'
-#             message = render_to_string('acc_active_email.html', {
-#                 'user': user,
-#                 'domain': current_site.domain,
-#                 'uid':urlsafe_base64_encode(force_bytes(user.pk)),
-#                 'token':account_activation_token.make_token(user),
-#             })
-#             to_email = form.cleaned_data.get('email')
-#             email = EmailMessage(
-#                         mail_subject, message, to=[to_email]
-#             )
-#             email.send()
-#             return HttpResponse('Please confirm your email address to complete the registration')
-#     else:
-#         form = SignupForm()
-#     return render(request, 'signup.html', {'form': form})
+def signup(request):
+    if request.method == 'POST':
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.is_active = False
+            user.save()
+            current_site = get_current_site(request)
+            mail_subject = 'Activate your Awards account.'
+            message = render_to_string('acc_active_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid':urlsafe_base64_encode(force_bytes(user.pk)),
+                'token':account_activation_token.make_token(user),
+            })
+            to_email = form.cleaned_data.get('email')
+            email = EmailMessage(
+                        mail_subject, message, to=[to_email]
+            )
+            email.send()
+            return HttpResponse('Please confirm your email address to complete the registration')
+    else:
+        form = SignupForm()
+    return render(request, 'signup.html', {'form': form})
 
-# def activate(request, uidb64, token):
-#     try:
-#         uid = force_text(urlsafe_base64_decode(uidb64))
-#         user = User.objects.get(pk=uid)
-#     except(TypeError, ValueError, OverflowError, User.DoesNotExist):
-#         user = None
-#     if user is not None and account_activation_token.check_token(user, token):
-#         user.is_active = True
-#         user.save()
-#         login(request, user)
-#         # return redirect('index')
-#         return HttpResponse('Thank you for your email confirmation. Now you can now <a href="/accounts/login/">Login</a> your account.')
-#     else:
-#         return HttpResponse('Activation link is invalid!')
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        login(request, user)
+        # return redirect('index')
+        return HttpResponse('Thank you for your email confirmation. Now you can now <a href="/accounts/login/">Login</a> your account.')
+    else:
+        return HttpResponse('Activation link is invalid!')
 
-# def loader(request):
-#     return render(request, 'loader.html')
+def loader(request):
+    return render(request, 'loader.html')
 
 def index(request):
     date = dt.date.today()
@@ -76,21 +76,21 @@ def index(request):
     form = ReviewForm()
     return render(request, 'all-posts/index.html', {"date": date,"comm":comm, "photos":photos, "profiles":profiles, "form":form})
 
-# def new_project(request):
-#     current_user = request.user
-#     profile = Profile.objects.get(user=current_user)
-#     if request.method == 'POST':
-#         form = ProjectForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             project = form.save(commit=False)
-#             project.user = current_user
-#             project.profile = profile
-#             project.save()
-#         return redirect('index')
+def new_project(request):
+    current_user = request.user
+    profile = Profile.objects.get(user=current_user)
+    if request.method == 'POST':
+        form = ProjectForm(request.POST, request.FILES)
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.user = current_user
+            project.profile = profile
+            project.save()
+        return redirect('index')
 
-#     else:
-#         form = ProjectForm()
-#     return render(request, 'new_project.html', {"form": form})
+    else:
+        form = ProjectForm()
+    return render(request, 'new_project.html', {"form": form})
  
 def edit_profile(request):
     date = dt.date.today()
@@ -116,20 +116,20 @@ def profile(request):
     posts = Project.objects.filter(user=current_user)
     return render(request, 'profile/profile.html', {"date": date, "profile":profile, "posts":posts})
 
-# @login_required(login_url='/accounts/login/')
-# def search_results(request):
-#     if 'username' in request.GET and request.GET["username"]:
-#         search_term = request.GET.get("username")
-#         searched_users = User.objects.filter(username=search_term)
-#         message = f"{search_term}"
-#         profiles=  Profile.objects.all( )
-#         # profile = Profile.objects.get(user_id=id)
-#         # post=Project.objects.filter(user_id=id)
-#         return render(request, 'all-posts/search.html',{"message":message,"users": searched_users,'profiles':profiles})
+@login_required(login_url='/accounts/login/')
+def search_results(request):
+    if 'username' in request.GET and request.GET["username"]:
+        search_term = request.GET.get("username")
+        searched_users = User.objects.filter(username=search_term)
+        message = f"{search_term}"
+        profiles=  Profile.objects.all( )
+        # profile = Profile.objects.get(user_id=id)
+        # post=Project.objects.filter(user_id=id)
+        return render(request, 'all-posts/search.html',{"message":message,"users": searched_users,'profiles':profiles})
 
-#     else:
-#         message = "You haven't searched for any term"
-#         return render(request, 'all-posts/search.html',{"message":message})
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'all-posts/search.html',{"message":message})
 
 @login_required(login_url='/accounts/login/')
 def comment(request,image_id):
@@ -144,57 +144,57 @@ def comment(request,image_id):
             comment.save()
     return redirect('index')
 
-# class ProjectList(APIView):
-#     permission_classes = (IsAdminOrReadOnly,)
-#     def get(self, request, format=None):
-#         all_projects = Project.objects.all()
-#         serializers = ProjectSerializer(all_projects, many=True)
-#         return Response(serializers.data)
-#     def post(self, request, format=None):
-#         serializers = ProjectSerializer(data=request.data)
-#         if serializers.is_valid():
-#             serializers.save()
-#             return Response(serializers.data, status=status.HTTP_201_CREATED)
-#         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+class ProjectList(APIView):
+    permission_classes = (IsAdminOrReadOnly,)
+    def get(self, request, format=None):
+        all_projects = Project.objects.all()
+        serializers = ProjectSerializer(all_projects, many=True)
+        return Response(serializers.data)
+    def post(self, request, format=None):
+        serializers = ProjectSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# class ProfileList(APIView):
+class ProfileList(APIView):
 
-#     def get(self,request,format=None):
-#         profile = Profile.objects.all()
-#         serialized = ProfileSerializer(profile,many=True)
-#         return Response(serialized.data)
+    def get(self,request,format=None):
+        profile = Profile.objects.all()
+        serialized = ProfileSerializer(profile,many=True)
+        return Response(serialized.data)
     
-#     def post(self,request,format=None):
-#         profile = ProfileSerializer(data=request.data)
-#         if profile.is_valid():
-#             profile.save()
-#             return Response(profile.data,status=status.HTTP_201_CREATED)
-#         return Response(profile.errors, status=status.HTTP_400_BAD_REQUEST)
+    def post(self,request,format=None):
+        profile = ProfileSerializer(data=request.data)
+        if profile.is_valid():
+            profile.save()
+            return Response(profile.data,status=status.HTTP_201_CREATED)
+        return Response(profile.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# class ProfileDesc(APIView):
-#     def get_profile(self,pk):
-#         try:
-#             return Profile.objects.get(id=pk) 
-#         except Profile.DoesNotExist:
-#             return Http404
-#     def get(self,request,pk,format=None):
-#         profile = self.get_profile(pk)
-#         serialized = ProfileSerializer(profile)
-#         return Response(serialized.data)
+class ProfileDesc(APIView):
+    def get_profile(self,pk):
+        try:
+            return Profile.objects.get(id=pk) 
+        except Profile.DoesNotExist:
+            return Http404
+    def get(self,request,pk,format=None):
+        profile = self.get_profile(pk)
+        serialized = ProfileSerializer(profile)
+        return Response(serialized.data)
     
-#     def put(self,request,pk,format=None):
-#         profile = self.get_profile(pk)
-#         serialized = ProfileSerializer(profile,request.data)
-#         if serialized.is_valid():
-#             serialized.save()
-#             return Response(serialized.data)
-#         return Response(serialized.errors,status=status.HTTP_400_BAD_REQUEST)
+    def put(self,request,pk,format=None):
+        profile = self.get_profile(pk)
+        serialized = ProfileSerializer(profile,request.data)
+        if serialized.is_valid():
+            serialized.save()
+            return Response(serialized.data)
+        return Response(serialized.errors,status=status.HTTP_400_BAD_REQUEST)
 
-# def profiles(request,id):
-#     profile = Profile.objects.get(user_id=id)
-#     post=Project.objects.filter(user_id=id)
+def profiles(request,id):
+    profile = Profile.objects.get(user_id=id)
+    post=Project.objects.filter(user_id=id)
                        
-#     return render(request,'profile/profiles_each.html',{"profile":profile,"post":post})
+    return render(request,'profile/profiles_each.html',{"profile":profile,"post":post})
 
 def projects(request,id):
     date = dt.date.today()
