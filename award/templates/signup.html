@@ -2,7 +2,7 @@
 {{block.super}}
 {% block content %}
 
-<div style="background-color: rgb(101, 124, 126); padding-bottom: 45px;" class="container-fluid">
+<div style="background-color: rgb(85, 3, 37); padding-bottom: 45px;" class="container-fluid">
     <div class="row">
         <div class="col-md-4">
 
@@ -12,12 +12,12 @@
                 {% if request.user.is_authenticated %} 
                 <h1>You are already Logged In</h1>
                 {% else%}
-                <div style="text-align: center; background-image: url('https://mdbootstrap.com/img/Photos/Others/pricing-table%20(7).jpg');"  class="card-header">
-                    <h2> <img float="right" src="https://mbtskoudsalg.com/images/award-transparent-real-5.png" alt="" height="90px"> Sign up</h2>
+                <div style="text-align: center; background-image: url('https://images.pexels.com/photos/2395255/pexels-photo-2395255.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');"  class="card-header">
+                    <h2> <img float="right" src="https://www.kyoceradocumentsolutions.com/products/awards/images/mv-top-sp_award.jpg" alt="" height="90px"> Sign up</h2>
                 </div>
                 
                    
-                    <div style="background-image: url('https://mdbootstrap.com/img/Photos/Others/pricing-table%20(7).jpg');" class="card-body">
+                    <div style="background-image: url('https://images.pexels.com/photos/2395255/pexels-photo-2395255.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');" class="card-body">
                             <form method="post">
                                     {% csrf_token %}
                                       {% for field in form %}
