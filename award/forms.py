@@ -16,35 +16,35 @@ class SignupForm(UserCreationForm):
         model = User
         fields = ('username', 'email', 'password1', 'password2')
 
-# class ReviewForm(forms.ModelForm):
-#     class Meta:
-#         model = Reviews
-#         exclude = ['project','user']
-#         fields = ['comment']
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Reviews
+        exclude = ['project','user']
+        fields = ['comment']
 
-# class EditForm(forms.ModelForm):
-#     class Meta:
-#         model = Profile
-#         fields = ['bio','profile_pic']
+class EditForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['bio','profile_pic']
 
-# rating_choices = [ 
-#     (1, '1'), 
-#     (2, '2'), 
-#     (3, '3'), 
-#     (4, '4'), 
-#     (5, '5'), 
-#     (6, '6'), 
-#     (7, '7'), 
-#     (8, '8'),
-#     (9, '9'), 
-#     (10, '10'),
-# ]
+rating_choices = [ 
+    (1, '1'), 
+    (2, '2'), 
+    (3, '3'), 
+    (4, '4'), 
+    (5, '5'), 
+    (6, '6'), 
+    (7, '7'), 
+    (8, '8'),
+    (9, '9'), 
+    (10, '10'),
+]
 
-# class Votess(forms.Form):
-#     design = forms.CharField(label='Design level', widget=forms.RadioSelect(choices=rating_choices))
+class Votess(forms.Form):
+    design = forms.CharField(label='Design level', widget=forms.RadioSelect(choices=rating_choices))
 
-#     usability = forms.CharField(label='Usability level', widget=forms.RadioSelect(choices=rating_choices))
+    usability = forms.CharField(label='Usability level', widget=forms.RadioSelect(choices=rating_choices))
 
-#     creativity  = forms.CharField(label='Creativity level', widget=forms.RadioSelect(choices=rating_choices))
+    creativity  = forms.CharField(label='Creativity level', widget=forms.RadioSelect(choices=rating_choices))
 
-#     content = forms.CharField(label='Content level', widget=forms.RadioSelect(choices=rating_choices))
+    content = forms.CharField(label='Content level', widget=forms.RadioSelect(choices=rating_choices))
