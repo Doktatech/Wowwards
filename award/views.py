@@ -109,12 +109,12 @@ def index(request):
     
 #     return render(request, 'profile/edit_profile.html', {"date": date, "form":signup_form,"profile":profile, "posts":posts})
 
-# def profile(request):
-#     date = dt.date.today()
-#     current_user = request.user
-#     profile = Profile.objects.get(user=current_user.id)
-#     posts = Project.objects.filter(user=current_user)
-#     return render(request, 'profile/profile.html', {"date": date, "profile":profile, "posts":posts})
+def profile(request):
+    date = dt.date.today()
+    current_user = request.user
+    profile = Profile.objects.get(user=current_user.id)
+    posts = Project.objects.filter(user=current_user)
+    return render(request, 'profile/profile.html', {"date": date, "profile":profile, "posts":posts})
 
 # @login_required(login_url='/accounts/login/')
 # def search_results(request):
