@@ -170,11 +170,11 @@ class ProfileList(APIView):
         return Response(profile.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ProfileDesc(APIView):
-    # def get_profile(self,pk):
-    #     try:
-    #         return Profile.objects.get(id=pk) 
-    #     except Profile.DoesNotExist:
-    #         return Http404
+    def get_profile(self,pk):
+        try:
+            return Profile.objects.get(id=pk) 
+        except Profile.DoesNotExist:
+            return Http404
     def get(self,request,pk,format=None):
         profile = self.get_profile(pk)
         serialized = ProfileSerializer(profile)
