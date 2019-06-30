@@ -41,31 +41,31 @@ class Profile(models.Model):
 # def save_user_profile(sender, instance, **kwargs):
 #     instance.profile.save()
 
-# class Project(models.Model):
+class Project(models.Model):
     
-#     project_name = models.CharField(max_length=30)
-#     image = models.ImageField(upload_to='images/')
-#     recorded_demo = models.FileField(upload_to='documents/' , null=True)
-#     project_description = models.CharField(max_length=30)
+    project_name = models.CharField(max_length=30)
+    image = models.ImageField(upload_to='images/')
+    recorded_demo = models.FileField(upload_to='documents/' , null=True)
+    project_description = models.CharField(max_length=30)
     
-#     project_url = models.CharField(max_length=70)
-#     technologies_used = models.CharField(max_length=70)
+    project_url = models.CharField(max_length=70)
+    technologies_used = models.CharField(max_length=70)
 
-#     profile = models.ForeignKey(Profile,on_delete=models.CASCADE, blank=True, null=True)
-#     user = models.ForeignKey(User,on_delete=models.CASCADE,blank=True, null=True)
-#     posted_time = models.DateTimeField(auto_now_add=True,)
+    profile = models.ForeignKey(Profile,on_delete=models.CASCADE, blank=True, null=True)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,blank=True, null=True)
+    posted_time = models.DateTimeField(auto_now_add=True,)
     
 
-#     class Meta:
-#         ordering = ['-posted_time']
+    class Meta:
+        ordering = ['-posted_time']
 
-#     def save_projects(self):
-#         self.save()
+    def save_projects(self):
+        self.save()
     
-#     @classmethod
-#     def get_projects(cls):
-#         projects = cls.objects.all()
-#         return projects
+    @classmethod
+    def get_projects(cls):
+        projects = cls.objects.all()
+        return projects
 
 # class Reviews(models.Model):
 #     comment = models.CharField(max_length = 300)
