@@ -84,10 +84,10 @@ class Reviews(models.Model):
         comments = Comments.objects.filter(project__pk = id)
         return comments
 
-# class Votes(models.Model):
-#     user = models.ForeignKey(User,on_delete=models.CASCADE)
-#     post =  models.ForeignKey(Project,on_delete=models.CASCADE,related_name='likes')
-#     design = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(10)])
-#     usability = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(10)])
-#     creativity = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(10)])
-#     content = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(10)])
+class Votes(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    post =  models.ForeignKey(Project,on_delete=models.CASCADE,related_name='likes')
+    design = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(10)])
+    usability = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(10)])
+    creativity = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(10)])
+    content = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(10)])
