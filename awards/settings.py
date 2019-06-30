@@ -55,7 +55,7 @@ EMAIL_PORT = config('EMAIL_PORT')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '4=w*5c*f4c%g42)d%g8c@4n6zbbu2=v2!(_^-6gz*m_gfya0dc'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -68,7 +68,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'bootstrap4',
     'tinymce',
-    # 'rest_framework',
+    'rest_framework',
     'rest_framework.authtoken',
     'award.apps.AwardConfig',
     'django.contrib.admin',
