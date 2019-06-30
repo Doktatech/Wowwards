@@ -131,18 +131,18 @@ def profile(request):
 #         message = "You haven't searched for any term"
 #         return render(request, 'all-posts/search.html',{"message":message})
 
-# @login_required(login_url='/accounts/login/')
-# def comment(request,image_id):
-#     #Getting comment form data
-#     image =  Project.objects.get(id=image_id)
-#     if request.method == 'POST':
-#         form = ReviewForm(request.POST)
-#         if form.is_valid():
-#             comment = form.save(commit=False)
-#             comment.user = request.user
-#             comment.image = image
-#             comment.save()
-#     return redirect('index')
+@login_required(login_url='/accounts/login/')
+def comment(request,image_id):
+    #Getting comment form data
+    image =  Project.objects.get(id=image_id)
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.image = image
+            comment.save()
+    return redirect('index')
 
 # class ProjectList(APIView):
 #     permission_classes = (IsAdminOrReadOnly,)
