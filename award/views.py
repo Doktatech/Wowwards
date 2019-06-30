@@ -105,9 +105,7 @@ def edit_profile(request):
     else:
         signup_form =EditForm() 
         
-
-    
-#     return render(request, 'profile/edit_profile.html', {"date": date, "form":signup_form,"profile":profile, "posts":posts})
+    return render(request, 'profile/edit_profile.html', {"date": date, "form":signup_form,"profile":profile, "posts":posts})
 
 def profile(request):
     date = dt.date.today()
