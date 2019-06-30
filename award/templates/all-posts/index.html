@@ -4,8 +4,8 @@
 {%load static %}
 {{block.super}}
 
-<div style="background-color:rgb(85, 3, 37);" id="main" class="container-fluid blue " >
-    <h1 style="text-align:center; color:rgb(175, 35, 65);" > <img float="right" src="https://www.kyoceradocumentsolutions.com/products/awards/images/mv-top-sp_award.jpg" alt="" height="150px"> AWWARDS </h1>
+<div style="background-image: url('https://images.pexels.com/photos/1054218/pexels-photo-1054218.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');" id="main" class="container-fluid blue " >
+    <h1 style="text-align:center; color:rgb(255, 255, 255);" > <img float="right" src="https://www.kyoceradocumentsolutions.com/products/awards/images/mv-top-sp_award.jpg" alt="" height="150px"> AWWARDS </h1>
     <h6 style="text-align:center; color:rgb(233, 235, 215);">{{date|date:"l d-F Y"}}</h6>
     
     <div class="mail">
@@ -18,11 +18,11 @@
         <br>
         <br>
         <br>
-        <div style="background-color:rgb(85, 3, 37);" class="row">
+        <div style="background-color:rgb(255, 255, 255);;" class="row">
             
                 {% for photos_item in photos %}
             <div class="col-md-6">
-                <div style="background-color: rgb(85, 3, 37);" class="card">
+                <div style="background-color: rgb(255, 255, 255);" class="card">
                         <div class="card-title">
                                 {% if photos_item.profile.profile_pic %}
                                 <section data-toggle="modal" data-target="#modalLoginAvatar"> <img  style="border-radius: 50% ; padding: 0.15rem;  width: 45px; background: linear-gradient(to right bottom, #2cd88888, #2ec96970);" class=" img-circle"
