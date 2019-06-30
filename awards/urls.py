@@ -23,5 +23,5 @@ urlpatterns = [
     url(r'',include('award.urls')),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^logout/$', views.logout, {"next_page": '/'}), 
-    url(r'^api/tokens',obtain_auth_token)
+    url(r'^api/tokens',obtain_auth_token),
 ]
