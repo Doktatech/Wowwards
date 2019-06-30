@@ -3,7 +3,7 @@
 {% load static%}
 
 {% block content %}
-<!-- <img src="https://media.giphy.com/media/uo6rcjwHSAFsQ/giphy.gif" alt="" height="100px"> -->
+
 <div  class="container">
     {% if users%}
         <h2>Found for {{users | length}} results searched term {{message}}</h2>
@@ -15,7 +15,7 @@
                 {% if user.profile.profile_pic %}
                <a href="/profiles/{{ user.id}}"><img src="{{user.profile.profile_pic.url}}" alt="profile-photo" class="rounded-circle user" width="80px" height="80px"><span style="color: white; font-size: 25px;" class="list-inline username">{{user.username}}</span></a> 
                 {% else %}
-                <a href="/profiles/{{ user.id}}"> <img src="https://www.bristolbrewing.com/wp-content/uploads/2017/08/default-avatar.png" alt="avatar" class="img-thumbnail rounded-circle user" width="80px" height="80px"><span style="color: white; font-size: 25px;" class="list-inline username">{{user.username}}</span></a> 
+                <a href="/profiles/{{ user.id}}"> <img src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" alt="avatar" class="img-thumbnail rounded-circle user" width="80px" height="80px"><span style="color: white; font-size: 25px;" class="list-inline username">{{user.username}}</span></a> 
                 {% endif %}         
             </div>
             {% endfor %}
