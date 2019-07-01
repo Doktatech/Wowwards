@@ -1,5 +1,4 @@
-#!/home/zamzam/Desktop/AwardsGb/virtual/bin/python
-
+#!/home/rewel/Documents/moringa-school-projects/MS-Python-Pre-work/Awards/virtual/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

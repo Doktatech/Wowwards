@@ -169,5 +169,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+ACCOUNT_ACTIVATION_DAYS = 1 # One-week activation window; you may, of course, use a different value.
+
 # Configure Django App for Heroku.
 django_heroku.settings(locals())
